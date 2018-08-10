@@ -29,6 +29,6 @@ from protopyenum.tests.proto2_pb2 import ExampleProto2Enum
 class TestProto2(unittest.TestCase):
     def test_proto2_enum(self):
         PythonEnum = enum.Enum('PythonEnum', ExampleProto2Enum.items())
-        self.assertEquals(1, PythonEnum.FIRST_CHOICE.value)
-        self.assertEquals(2, PythonEnum.SECOND_CHOICE.value)
-        self.assertEquals(3, PythonEnum.THIRD_CHOICE.value)
+        self.assertEqual(1, PythonEnum.FIRST_CHOICE.value)
+        self.assertEqual(2, PythonEnum.SECOND_CHOICE.value)
+        self.assertEqual(3, PythonEnum.THIRD_CHOICE.value)
