@@ -25,10 +25,11 @@ import enum
 import unittest
 
 from protopyenum.tests.proto3_pb2 import ExampleProto3Enum
+from protopyenum import to_py
 
 class TestProto3(unittest.TestCase):
     def test_proto3_enum(self):
-        PythonEnum = enum.Enum('PythonEnum', ExampleProto3Enum.items())
+        PythonEnum = to_py(ExampleProto3Enum)
         self.assertEqual(0, PythonEnum.FIRST_CHOICE.value)
         self.assertEqual(1, PythonEnum.SECOND_CHOICE.value)
         self.assertEqual(2, PythonEnum.THIRD_CHOICE.value)
