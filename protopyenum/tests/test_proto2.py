@@ -13,20 +13,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from setuptools import setup
+"""
+"""
+# Per https://docs.python.org/3/howto/pyporting.html
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
-tests_require = (
-    'enum34',
-    'nose',
-    'protobuf',
-)
+import enum
+import unittest
 
-setup(name='protopyenum',
-      version='0.1',
-      description='Protocol Buffer Enumerations in Python',
-      url='http://github.com/wtanaka/protopyenum',
-      author='https://wtanaka.com/',
-      license='Apache Software License (http://www.apache.org/licenses/LICENSE-2.0)',
-      packages=['protopyenum'],
-      tests_require=tests_require,
-      zip_safe=False)
+from protopyenum.tests.proto2_pb2 import ExampleProto2Enum
+
+class TestProto2(unittest.TestCase):
+    def test_proto2_enum(self):
+        PythonEnum = enum.Enum('PythonEnum', ExampleProto2Enum.items())
+        self.assertEquals(1, PythonEnum.FIRST_CHOICE.value)
+        self.assertEquals(2, PythonEnum.SECOND_CHOICE.value)
+        self.assertEquals(3, PythonEnum.THIRD_CHOICE.value)
